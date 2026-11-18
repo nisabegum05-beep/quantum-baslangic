@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    Content-Security-Policy (CSP): tarayıcıya "bu sayfa nereye bağlanabilir" kuralını söyler.
+    default-src 'none'  → varsayılan olarak hiçbir kaynağa izin yok
+    script-src 'self'   → yalnızca bu sayfanın geldiği yerden (kendi dosyalarımız) betik yüklenir
+    style-src 'self'    → yalnızca kendi stil.css dosyamız
+    connect-src 'none'  → fetch / XMLHttpRequest / WebSocket ile HİÇBİR sunucuya bağlanılamaz
+    img-src 'none'      → dış resim yok (gizli veri resim adresine saklanıp sızdırılamaz)
+    form-action 'none'  → form gönderimi yok
+    Amaç: entropi, kelimeler, seed, private key gibi gizli veriler yanlışlıkla bile
+    bir sunucuya, analitik servisine veya üçüncü tarafa gidemesin. [İP12-3]
+    Not: Geliştirme sunucusunun (Vite) canlı yenileme WebSocket'i de bu kuralla engellenir;
+    kodu değiştirince sayfayı elle yenilemek gerekir. Bu, güvenlik için bilinçli bir tercihtir.
+  -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>Eğitim Cüzdanı Oluşturucu</title>
+  <link rel="stylesheet" href="./stil.css" />
+</head>
+<body>
+  <!-- TASARIM: kullanıcıya bırakıldı -->
+  <header class="sayfa-basligi">
+    <h1>cüzdan oluşturucu</h1>
+    <p class="alt-baslik">Entropi → 12 kelime (BIP39) → seed → m/44'/60'/0'/0/0 (BIP32/BIP44) → private key → public key → adres</p>
+  </header>
+
+  <!-- Çiçekler: tıklanınca sıradaki açıklama balonda görünür (10 adet, src/aciklamalar.js) -->
+  <button type="button" class="cicek-dugmesi cicek-sol" aria-label="Açıklama göster">
+    <svg viewBox="0 0 100 100" aria-hidden="true" class="cicek-svg">
+      <g class="cicek-yapraklar">
+        <circle cx="50" cy="22" r="18"/><circle cx="76" cy="40" r="18"/><circle cx="68" cy="70" r="18"/>
+        <circle cx="32" cy="70" r="18"/><circle cx="24" cy="40" r="18"/>
+      </g>
+      <circle class="cicek-merkez" cx="50" cy="50" r="13"/>
+    </svg>
+  </button>
+  <button type="button" class="cicek-dugmesi cicek-sag" aria-label="Açıklama göster">
+    <svg viewBox="0 0 100 100" aria-hidden="true" class="cicek-svg">
+      <g class="cicek-yapraklar">
+        <circle cx="50" cy="22" r="18"/><circle cx="76" cy="40" r="18"/><circle cx="68" cy="70" r="18"/>
+        <circle cx="32" cy="70" r="18"/><circle cx="24" cy="40" r="18"/>
+      </g>
+      <circle class="cicek-merkez" cx="50" cy="50" r="13"/>
+    </svg>
+  </button>
+  <div id="cicek-balonu" class="cicek-balonu" role="dialog" aria-live="polite" hidden>
+    <button type="button" id="balon-kapat" class="balon-kapat" aria-label="Kapat">×</button>
+    <p class="balon-baslik"></p>
+    <p class="balon-ne"></p>
+    <p class="balon-neden"></p>
+    <p class="balon-sayac"></p>
+  </div>
+
+  <p class="kalici-uyari" role="alert">
+    Yalnızca eğitim amaçlıdır. Bu cüzdana gerçek varlık göndermeyin. Kelimeleri kimseyle paylaşmayın.
+  </p>
+
+  <section class="olusturma-bolumu">
+    <button type="button" id="yeni-cuzdan-dugmesi" class="ana-dugme">Yeni eğitim cüzdanı oluştur</button>
+    <p id="durum-mesaji" class="durum-mesaji" aria-live="polite"></p>
+  </section>
+
+  <section class="asamalar-bolumu" aria-label="Cüzdan türetme aşamaları">
+
+    <article class="asama-karti" id="asama-1-entropi">
+      <h2>Aşama 1 — Entropi (128 bit)</h2>
+      <p class="asama-aciklama">16 bayt güvenli rastgele veri. Her şey bu sayıdan türer. <span class="standart-etiketi">BIP39</span></p>
+      <p class="kutuphane-cagrisi">ethers.randomBytes(16) → ethers.hexlify(...)</p>
+      <div class="deger-satiri">
+        <code class="gizli-deger" data-alan="entropi" data-gizli="true">— — —</code>
+        <button type="button" class="goster-gizle-dugmesi" data-hedef="entropi">Göster</button>
+      </div>
+    </article>
+
+    <article class="asama-karti" id="asama-2-mnemonic">
+      <h2>Aşama 2 — 12 kelime (mnemonic)</h2>
+      <p class="asama-aciklama">Entropiye 4 bit checksum eklenir, 132 bit 11'er bitlik 12 parçaya bölünür, her parça 2048 kelimelik listeden bir kelime seçer. <span class="standart-etiketi">BIP39</span></p>
+      <p class="kutuphane-cagrisi">ethers.Mnemonic.fromEntropy(entropiHex).phrase</p>
+      <div class="deger-satiri">
+        <code class="gizli-deger" data-alan="mnemonic" data-gizli="true">— — —</code>
+        <button type="button" class="goster-gizle-dugmesi" data-hedef="mnemonic">Göster</button>
+      </div>
+    </article>
+
+    <article class="asama-karti" id="asama-3-seed">
+      <h2>Aşama 3 — Seed (512 bit)</h2>
+      <p class="asama-aciklama">12 kelime PBKDF2-HMAC-SHA512 ile 2048 tur karıştırılır. Passphrase bu deneyde BOŞ. <span class="standart-etiketi">BIP39</span></p>
+      <p class="kutuphane-cagrisi">ethers.Mnemonic.fromPhrase(kelimeler, "").computeSeed()</p>
+      <div class="deger-satiri">
+        <code class="gizli-deger" data-alan="seed" data-gizli="true">— — —</code>
+        <button type="button" class="goster-gizle-dugmesi" data-hedef="seed">Göster</button>
+      </div>
+    </article>
+
+    <article class="asama-karti" id="asama-4-master-key">
+      <h2>Aşama 4 — Master key (kök düğüm)</h2>
+      <p class="asama-aciklama">Seed'den anahtar ağacının kökü üretilir. Bu xprv bütün hesapların anahtarıdır. <span class="standart-etiketi">BIP32</span></p>
+      <p class="kutuphane-cagrisi">ethers.HDNodeWallet.fromSeed(seedHex).extendedKey</p>
+      <div class="deger-satiri">
+        <code class="gizli-deger" data-alan="masterKey" data-gizli="true">— — —</code>
+        <button type="button" class="goster-gizle-dugmesi" data-hedef="masterKey">Göster</button>
+      </div>
+    </article>
+
+    <article class="asama-karti" id="asama-5-turetme-yolu">
+      <h2>Aşama 5 — Türetme yolu</h2>
+      <p class="asama-aciklama">Kökten m/44'/60'/0'/0/0 yoluyla ilk Ethereum hesabının düğümüne inilir. <span class="standart-etiketi">BIP44</span></p>
+      <p class="kutuphane-cagrisi">kokDugum.derivePath("m/44'/60'/0'/0/0")</p>
+      <div class="deger-satiri">
+        <code class="acik-deger" data-alan="turetmeYolu">— — —</code>
+      </div>
+    </article>
+
+    <article class="asama-karti" id="asama-6-private-key">
+      <h2>Aşama 6 — Private key (256 bit)</h2>
+      <p class="asama-aciklama">Yoldaki düğümün gizli anahtarı. Hesabın harcama yetkisi tamamen bu sayıdır. <span class="standart-etiketi">BIP32</span></p>
+      <p class="kutuphane-cagrisi">hesapDugumu.privateKey</p>
+      <div class="deger-satiri">
+        <code class="gizli-deger" data-alan="privateKey" data-gizli="true">— — —</code>
+        <button type="button" class="goster-gizle-dugmesi" data-hedef="privateKey">Göster</button>
+      </div>
+    </article>
+
+    <article class="asama-karti" id="asama-7-public-key">
+      <h2>Aşama 7 — Public key (sıkıştırılmamış, 65 bayt)</h2>
+      <p class="asama-aciklama">Private key'den secp256k1 eğri çarpımıyla hesaplanır; geri dönülemez. <span class="standart-etiketi">secp256k1</span></p>
+      <p class="kutuphane-cagrisi">ethers.SigningKey.computePublicKey(privateKeyHex, false)</p>
+      <div class="deger-satiri">
+        <code class="acik-deger" data-alan="publicKey">— — —</code>
+      </div>
+    </article>
+
+    <article class="asama-karti" id="asama-8-adres">
+      <h2>Aşama 8 — Ethereum adresi</h2>
+      <p class="asama-aciklama">Public key'in (0x04 öneki atılmış) Keccak-256 hash'inin son 20 baytı; büyük/küçük harf EIP-55 checksum'ı. <span class="standart-etiketi">EIP-55</span></p>
+      <p class="kutuphane-cagrisi">keccak256 → dataSlice(…, 12) → getAddress; kontrol: computeAddress</p>
+      <div class="deger-satiri">
+        <code class="acik-deger" data-alan="adres">— — —</code>
+      </div>
+      <p class="kontrol-sonucu" data-alan="adresKontrol"></p>
+    </article>
+
+  </section>
+
+  <div class="yildizlar-satiri">
+  <section class="dogrulama-bolumu" id="dogrulama-kutusu" aria-label="Mnemonic doğrulama">
+    <h2>Mnemonic doğrulama kutusu (İP 13 checksum deneyi)</h2>
+    <p class="bolum-aciklama">12 kelime yaz; sonuç yalnızca üç hâlden biridir. Yazılan kelimeler hiçbir yere gönderilmez.</p>
+    <textarea id="dogrulama-girdisi" class="dogrulama-girdisi" rows="3" autocomplete="off" spellcheck="false"></textarea>
+    <button type="button" id="dogrula-dugmesi" class="yildiz-dugmesi" aria-label="Doğrula"><svg viewBox="0 0 100 100" aria-hidden="true" class="yildiz-svg"><path d="M50 6 C56 26 62 32 82 36 C66 46 62 54 64 76 C52 64 44 62 24 72 C32 56 30 46 14 32 C34 34 42 28 50 6 Z"/></svg><span class="yildiz-etiketi">doğrula</span></button>
+    <p id="dogrulama-sonucu" class="dogrulama-sonucu" aria-live="polite"></p>
+  </section>
+
+  <section class="yeniden-turetme-bolumu" id="yeniden-turetme" aria-label="Kelimelerden yeniden türetme">
+    <h2>Kâğıttaki kelimelerden yeniden türet</h2>
+    <p class="bolum-aciklama">Sayfa yenilenince değerler silinir. Aynı cüzdanı tekrar incelemek için 12 kelimeyi yaz; kelimeler hiçbir yere gönderilmez ve kutu işlem sonrası temizlenir.</p>
+    <textarea id="yeniden-turetme-girdisi" class="yeniden-turetme-girdisi" rows="3" autocomplete="off" spellcheck="false"></textarea>
+    <button type="button" id="yeniden-turet-dugmesi" class="yildiz-dugmesi" aria-label="Kelimelerden türet"><svg viewBox="0 0 100 100" aria-hidden="true" class="yildiz-svg"><path d="M50 6 C56 26 62 32 82 36 C66 46 62 54 64 76 C52 64 44 62 24 72 C32 56 30 46 14 32 C34 34 42 28 50 6 Z"/></svg><span class="yildiz-etiketi">kelimelerden geri türet</span></button>
+    <p id="yeniden-turetme-sonucu" class="yeniden-turetme-sonucu" aria-live="polite"></p>
+  </section>
+  </div>
+
+  <section class="test-vektoru-bolumu" id="test-vektoru" aria-label="Resmî BIP39 test vektörü">
+    <h2>Resmî BIP39 test vektörü kontrolü (isteğe bağlı, İP 12)</h2>
+    <p class="bolum-aciklama">Resmî vektör "TREZOR" passphrase'iyle üretilmiştir; yukarıdaki deneyin passphrase'i BOŞtur. İki ayar ayrı tutulur.</p>
+    <button type="button" id="test-vektoru-dugmesi" class="ikincil-dugme">Vektörü kontrol et</button>
+    <p id="test-vektoru-sonucu" class="test-vektoru-sonucu" aria-live="polite"></p>
+  </section>
+
+  <script type="module" src="./src/arayuz.js"></script>
+</body>
+</html>

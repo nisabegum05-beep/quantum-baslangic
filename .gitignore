@@ -1,0 +1,10 @@
+# Takımın iç belgesi (iş paketi PDF'i) GitHub'a gitmemeli
+kaynaklar/
+QuantumTeam-Blokzincir-İsPaketi-v1.0.pdf
+
+# Node.js bağımlılıkları ve derleme çıktıları
+node_modules/
+dist/
+
+# Gizli ayar dosyaları (API anahtarı vb.) asla depoya girmez
+.env
