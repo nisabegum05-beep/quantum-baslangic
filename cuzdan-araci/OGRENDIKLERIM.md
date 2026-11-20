@@ -311,3 +311,61 @@ Bu dosya rapor değildir; her adımda ne yaptığımı, nereye bakacağımı ve 
 - Yeni terimler (not al): Decode Input Data — Etherscan'in ABI ile Input Data'yı `transfer(address to, uint256 amount)` olarak göstermesi. Method ID — Input Data'nın ilk 4 baytı (0xa9059cbb = transfer).
 - Önceden öğrendiğim terimler burada: Native varlık ile token farkı — İP 04 soru 2; bu tablo o sorunun kanıtı.
 - İş paketi: [İP15-3]
+
+### İP 15 — gerçekleşen (olgu özeti, ayrıntı KAYIT.md)
+- USDC sözleşmesi Circle dokümanından bulundu (0x1c7D…7238); faucet'ten USDC alındı; MetaMask'e özel token olarak eklendi; ikinci hesap (…/0/1, 0x72d4…0F4B) açıldı; 0.005 ETH ve 10 USDC gönderildi.
+- Karşılaştırma: ETH → To kişi, Value 0.005, Input boş. USDC → To sözleşme, Value 0, Input = transfer(to, value), MethodID 0xa9059cbb, miktar 0x989680 = 10.000.000 = 10 USDC (6 ondalık), Transfer event'i. İki ücret de ETH'den.
+- Nonce dizisi 0–3 başarısız register'ın da bloğa girdiğini gösterdi.
+- Açık nokta: ETH transferi 21.000 yerine 204.600 gas harcadı; olası sebep MetaMask akıllı hesap (EIP-7702), doğrulanmadı.
+- Diğer projelerde tekrar kullanılacak terimler: native vs token, sözleşme çağrısı, Input Data / calldata, function selector (MethodID), ABI encoding, decimals / en küçük birim, event / log / Transfer, msg.sender, nonce, gas used, EIP-1559 (base / priority fee), balanceOf (view), allowance / approve (ileride).
+
+## İP 16 — Remix ile gerçek ismimi kaydettim
+
+### ADIM 16.1 — Doğrulanmış kodu Etherscan'den alıp Remix'e koymak
+- Ne yapıldı: Takım sözleşmesinin (0x81Dd…9036) Etherscan'deki doğrulanmış `src/QuantumKayit.sol` kodu Remix'e kopyalandı; settings.json kopyalanmadı.
+- Nereye bak: Etherscan → Contract → Code; Remix → File Explorer.
+- Yeni terimler (not al): Verified contract — kaynak kodun zincirdeki bytecode ile eşleştiği kanıtlanmış sözleşme. require — koşul tutmazsa işlemi geri alan (revert) Solidity satırı. msg.sender — işlemi imzalayan adres.
+- Önceden öğrendiğim terimler burada: Kaynak kod → derleme → bytecode + ABI; verify ≠ denetim; İP 05.
+- İş paketi: [İP16-1]
+
+### ADIM 16.2 — Derleme: ABI üretmek
+- Ne yapıldı: Remix Compile ile kod derlendi; `artifacts/QuantumKayit.json` içinde ABI ve bytecode oluştu. İsim koda yazılmadı; isim sonradan fonksiyon parametresi olarak verildi.
+- Nereye bak: Remix Compile sekmesi (yeşil tik), File Explorer → artifacts.
+- Yeni terimler (not al): Artifact — derleyicinin ürettiği ABI + bytecode dosyası.
+- Önceden öğrendiğim terimler burada: ABI olmadan adres bilinse de fonksiyon çağrılamaz; İP 05 soru 3.
+- İş paketi: [İP16-1]
+
+### ADIM 16.3 — Injected Provider ve At Address (Deploy YOK)
+- Ne yapıldı: Environment = Browser Extension / MetaMask; hesap 0x05d…00Af6; Deploy'a basılmadı; At Address ile takımın sözleşmesine bağlanıldı. İlk denemede site ağı Sepolia değildi → "no code found at address"; MetaMask'te remix.ethereum.org için ağ Sepolia yapıldı, bağlantı yenilendi.
+- Nereye bak: Remix Deploy sekmesi → Deployed Contracts; MetaMask alttaki site satırı (site başına ağ).
+- Yeni terimler (not al): Injected Provider — tarayıcı uzantısının sayfaya verdiği cüzdan bağlantısı. At Address — mevcut sözleşmeye ABI ile bağlanmak (Deploy'un tersi). Site başına ağ — MetaMask her siteye ayrı ağ verebilir.
+- Önceden öğrendiğim terimler burada: Aynı adres farklı ağda başka sözleşme olabilir ya da hiç olmayabilir; İP 05 soru 3. RPC — Remix ağa MetaMask'in RPC'si üzerinden soruyor; İP 06.
+- İş paketi: [İP16-2]
+
+### ADIM 16.4 — İsim kuralı ve gönderim öncesi teyit
+- Ne yapıldı: Nisa Begüm Erkılıç → nisabegumerkilic. İlk onay penceresinde kutuda Türkçe "ı" kalmıştı → İptal edildi (işlem oluşmadı); düzeltildi. Gönderimden önce: ağ Sepolia, hesap 0x05d…00Af6, etkileşim 0x81Dd…9036, kayitSayisi/tumKayitlar okuması başarılı, isim yalnızca a–z.
+- Nereye bak: Remix register kutusu; MetaMask onay penceresi (Ağ, Etkileşimde, Ağ ücreti).
+- Yeni terimler (not al): Geri alınamaz işlem — zincire yazılan veri silinmez; bu sözleşmede düzeltme fonksiyonu yok.
+- Önceden öğrendiğim terimler burada: İşlem göndermeden önce okumak ücretsizdir (view); İP 05 soru 4.
+- İş paketi: [İP16-3]
+
+### ADIM 16.5 — register işlemi
+- Ne yapıldı: register("nisabegumerkilic") gönderildi; tx 0x67587dea…6222. State'te: kayitliMi[benim adresim] = true, kayitlar listesinde 8. sıra, zaman 2026-11-15 16:12:36 UTC; Registered event'i yayımlandı.
+- Nereye bak: Remix konsolu; Etherscan adres sayfası → Register satırı; tumKayitlar sonucu.
+- Yeni terimler (not al): State değişimi vs event — 24–26. satırlar state'i değiştirir, 28. satır log bırakır.
+- Önceden öğrendiğim terimler burada: Geçmiş kayıt (tx) değişmez, güncel değer (state) yeni işlemle değişir; İP 01 soru 3. Event vs state; İP 06 soru 3.
+- İş paketi: [İP16-4]
+
+### ADIM 16.6 — İkinci register: hata nerede oluştu?
+- Ne yapıldı: Etherscan'de başarılı kaydın bir blok sonrasında başarısız (Status Fail) ikinci bir Register işlemi görüldü (0x9eb7161beb…, blok 12141332, nonce 1). Yani ikinci deneme zincire gitmiş ve 22. satırdaki require ile revert olmuş; gas ödenmiş, state değişmemiş. Nasıl gönderildiği (çift onay / uyarı geçme) henüz netleşmedi.
+- Nereye bak: Etherscan adres sayfası, kırmızı ⚠ satır.
+- Yeni terimler (not al): Gönderilmeden önce oluşan hata — cüzdanın gas tahmini (eth_estimateGas) revert görür, tx hash oluşmaz. Zincirde oluşan hata — işlem bloğa girer, status 0, gas ödenir, nonce harcanır.
+- Önceden öğrendiğim terimler burada: Status 0 olan işlem de bloğa girmiştir ve gas ödemiştir; İP 02 soru 4, İP 07 soru 4.
+- İş paketi: [İP16-5]
+
+### ADIM 16.7 — Kontrol sitesi
+- Ne yapıldı: İsim kontrol sitesinde göründü.
+- Nereye bak: haloclineblockchain.vercel.app.
+- Yeni terimler (not al): yok.
+- Önceden öğrendiğim terimler burada: Site zincirin kendisi değil, zinciri okuyan bir arayüz (indexer/explorer gibi); İP 06.
+- İş paketi: [İP16-6]
