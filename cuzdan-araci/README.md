@@ -6,6 +6,9 @@ Rastgelelikten Ethereum adresine giden 8 aşamayı ayrı dosyalarda uygular ve h
 yerel ekranda ayrı kartta gösterir. Hiçbir veri sunucuya, analitiğe, log'a veya tarayıcı
 depolamasına gitmez; index.html'deki Content-Security-Policy ağ bağlantısını tamamen kapatır.
 
+**Canlı adres:** https://etkinlikcuzdani-araci.vercel.app/ (Vercel).
+Yayındaki sürüm de her şeyi yalnızca açan kişinin tarayıcısında hesaplar; sunucuya hiçbir değer gitmez.
+
 ## Çalıştırma
 
 ```bash

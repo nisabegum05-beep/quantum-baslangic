@@ -1,7 +1,9 @@
 # Geliştirici Kadınlar Etkinliği — web sitesi (İP 24)
 
 Kadın geliştiricilere yönelik Kadınzincir etkinlik sözleşmesini MetaMask ile kullanan web arayüzü. Sitenin başlığı "Geliştirici Kadınlar Etkinliği".
-Sıfırdan yazıldı: Vite + sade JavaScript + ethers.js v6.
+Tasarımı ve istekleri ben verdim, kodu Claude Code sıfırdan yazdı: Vite + sade JavaScript + ethers.js v6.
+
+**Canlı adres:** https://etkinlik-sitesi-ivory.vercel.app/
 
 ## Çalıştırma
 
@@ -66,7 +68,7 @@ MetaMask'teki o hesap (`0x05d782…00Af6`) etkinlik sitesine bağlanıp görevli
 
 ## Vercel'de yayınlama
 
-Depo GitHub'a gönderildikten sonra Vercel panelinden içe aktarılır:
+Site https://etkinlik-sitesi-ivory.vercel.app/ adresinde yayında. GitHub deposu Vercel panelinden şu ayarlarla içe aktarılır:
 
 1. Vercel → **Add New… → Project** → GitHub'daki `quantum-baslangic` deposunu seç. Ekip: **beguemworkspace**.
 2. **Root Directory:** `etkinlik-sitesi`. Depo kökü değil, yalnızca bu klasör.

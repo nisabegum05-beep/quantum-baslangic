@@ -6,6 +6,8 @@
 
 İşlem: [`0x67587deae063fe93b5678de80f6c66ce83a965fb3149ab8e794011afdfb06222`](https://sepolia.etherscan.io/tx/0x67587deae063fe93b5678de80f6c66ce83a965fb3149ab8e794011afdfb06222)
 
+> Kaynak notu: 2., 3. ve 6. başlıklardaki Etherscan değerlerini yapay zekâ asistanı Etherscan sayfalarından okudu. Bu sayfaların ekran görüntüsünü almadım. 4. başlıktaki `tumKayitlar` okumasını Remix'te kendim yaptım.
+
 
 
 ## 2. Decode Input Data: gönderdiğim isim
@@ -42,7 +44,7 @@ Sözleşmenin `tumKayitlar` fonksiyonunu okuduğumda kendi satırımı gördüm:
 
 ## 5. Akış şeması: kendi işlemlerimle
 
-İP 07'deki genel şemayı kendi iki register işlemime göre güncelledim:
+İP 07'deki genel şema, benim iki register işlemime göre burada yeniden çizildi:
 
 ```mermaid
 flowchart TD

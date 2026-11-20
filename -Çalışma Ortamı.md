@@ -4,7 +4,7 @@
 
 ## 1. GitHub hesabı, Visual Studio Code ve Git
 
-GitHub hesabım, Visual Studio Code ve Git, HALOCLINE projesinden zaten kuruluydu. Bu iş paketi için yeniden kurmadım. Yalnızca Git kullanıcı adımın ve e-postamın tanımlı olduğunu kontrol ettim.
+GitHub hesabım, Visual Studio Code ve Git, HALOCLINE projesinden zaten kuruluydu. Bu iş paketi için yeniden kurmadım. Git kullanıcı adım ve e-postam zaten tanımlıydı.
 
 ## 2. quantum-baslangic klasörü ve GitHub deposu
 
@@ -26,7 +26,7 @@ Deponun kökündeki `README.md` çalışmanın amacını, öğrenmek istediğim 
 
 ## 4. MetaMask
 
-MetaMask'i resmî kaynağı olan metamask.io üzerinden kurdum. Eğitim hesabını kişisel cüzdanıma karıştırmamak için İP 13'te Brave'de ayrı bir tarayıcı profili açıp MetaMask'i orada kurdum. Aynı hesabı MetaMask mobil uygulamasında da açtım. Her kurulum kendi parolasını, hesap adını ve ağ listesini ayrı tutuyor; hesabın kendisi ise 12 kelimeden türediği için her yerde aynı adresle geliyor.
+MetaMask'i resmî kaynağı olan metamask.io üzerinden kurdum. İP 13'te eğitim hesabını eski cüzdanlarımdan ayırmak için Brave'deki eski MetaMask eklentisini silip yeniden kurdum. Yeni kelimeleri hem bu temiz eklentiye hem de Safari'deki MetaMask'e girdim. Her kurulum kendi parolasını, hesap adını ve ağ listesini ayrı tutuyor; hesabın kendisi ise 12 kelimeden türediği için her yerde aynı adresle geliyor.
 
 ## 5. Remix IDE ve Solidity
 
@@ -38,7 +38,7 @@ Remix IDE'yi resmî adresi remix.ethereum.org üzerinden açtım. Remix, bu adre
 
 ## 6. Node.js ve paket yöneticisi
 
-Cüzdan aracını Vite ve ethers.js ile yazdığım için Node.js ve npm kurdum. Kullandığım sürümler Node.js v24.18.1 ve npm 11.16.0. Uygulamayı `cuzdan-araci/` klasöründe şu komutlarla çalıştırıyorum:
+Cüzdan aracı Vite ve ethers.js ile yazıldığı için Node.js ve npm gerekiyor. Kodu yapay zekâ asistanı Claude Code yazdı, ben çalıştırıp denedim. Kullandığım sürümler Node.js v24.18.1 ve npm 11.16.0. Uygulamayı `cuzdan-araci/` klasöründe şu komutlarla çalıştırıyorum:
 
 ```
 npm install     # bağımlılıkları kurar (ethers, vite)
@@ -52,7 +52,7 @@ Araçların ve çalıştırma adımlarının ayrıntısı kökteki `README.md` d
 
 ## Benim yorumum
 
-Git, GitHub ve VS Code'u HALOCLINE'da mobil uygulama geliştirirken zaten kullanıyordum, o yüzden bunlar yeni değildi. Benim için yeni olan MetaMask'in çoklu cüzdan mantığı ve Remix'ti. MetaMask'te aynı kurulumun içine yeni kelimeler eklemeye çalışınca "zaten içe aktarıldı" hatasıyla uğraştım ve en sonunda temiz bir profilde baştan kurmak en sağlıklı yol oldu. Buradan şunu öğrendim: parola, hesap adı ve ağ listesi cihaza ait, hesabın kendisi ise kelimelere ait. Remix'te de en çok şaşırdığım şey sitenin MetaMask'te ayrı bir ağa bağlı kalabilmesiydi. Kurulumda takıldığım her yerde önce hata mesajını okuyup neyin nereye bağlı olduğunu anlamaya çalıştım.
+Git, GitHub ve VS Code'u HALOCLINE'da mobil uygulama geliştirirken zaten kullanıyordum, o yüzden bunlar yeni değildi. Benim için yeni olan MetaMask'in çoklu cüzdan mantığı ve Remix'ti. MetaMask'te aynı kurulumun içine yeni kelimeler eklemeye çalışınca "zaten içe aktarıldı" hatasıyla uğraştım ve en sonunda eklentiyi silip temiz kurmak en sağlıklı yol oldu. Buradan şunu öğrendim: parola, hesap adı ve ağ listesi cihaza ait, hesabın kendisi ise kelimelere ait. Remix'te de en çok şaşırdığım şey sitenin MetaMask'te ayrı bir ağa bağlı kalabilmesiydi. Kurulumda takıldığım her yerde önce hata mesajını okuyup neyin nereye bağlı olduğunu anlamaya çalıştım.
 
 ## Kaynaklar
 - [Git – Dokümantasyon](https://git-scm.com/doc)

@@ -6,7 +6,7 @@
 
 İlk denememde kelimeleri kişisel MetaMask'ime "Cüzdan ekle" ile eklemeye çalıştım. MetaMask yeni kelimelerde bile "Bu Gizli Kurtarma İfadesi zaten içe aktarıldı" hatası verdi ve eklenen hesabı listede bulamadım; kesin sebebini doğrulayamadım. O sırada bir eğitim cüzdanının kelimeleri ekran görüntüsüyle yapay zekâ sohbetine girdi; o cüzdanı bir daha kullanmadım ve yenisini ürettim.
 
-Sonunda temiz yola geçtim: yeni üretilen kelimeleri kâğıda yazıp MetaMask mobil uygulamasına ve Brave'de açtığım ayrı bir profildeki MetaMask'e içe aktardım. Kelimeler kâğıtta duruyor. Hiçbir dosyaya ve depoya yazılmadı. Kanıt görsellerinde kelimeler ya hiç görünmüyor ya da kapatıldı.
+Sonunda temiz yola geçtim: Brave'deki eski MetaMask eklentisini silip yeniden kurdum. Yeni üretilen kelimeleri kâğıda yazıp Safari'deki MetaMask'e ve bu temiz Brave eklentisine içe aktardım. Kelimeler kâğıtta duruyor. Hiçbir dosyaya ve depoya yazılmadı. Kanıt görsellerinde kelimeler ya hiç görünmüyor ya da kapatıldı.
 
 Burada şunu gördüm: hesap adı, parola ve ağ listesi her kurulumda ayrı tutuluyor. Aynı kelimeleri iki farklı kuruluma girince hesap adı birinde "quantum-ispaket", diğerinde "Account 1" oldu, ama adres aynı kaldı.
 
@@ -25,7 +25,7 @@ Burada şunu gördüm: hesap adı, parola ve ağ listesi her kurulumda ayrı tut
 
 Uygulamadaki doğrulama kutusu üç sonuç veriyor: "Geçerli (checksum tuttu)", "Geçersiz — kelime listede yok" ve "Geçersiz — checksum tutmadı". Önce kelime sayısına, sonra her kelimenin 2048'lik listede olup olmadığına, en son checksum'a bakıyor. Listede olmayan bir kelime checksum'a gelmeden reddediliyor.
 
-Kâğıttaki kelimelerle kutu "Geçerli" dedi. Sonra bir kelimeyi listedeki başka kelimelerle değiştirerek birkaç deneme yaptım; denemelerimin hepsinde sonuç "Geçersiz" çıktı, tesadüfen geçen bir kelimeye denk gelmedim. Gerçek kelimelerim gizli olduğu için deneme ayrıntılarını (pozisyon ve kelime) kaydetmedim. Aynı davranışı herkese açık resmî test kelimeleriyle (11 × `abandon` + `about`) de doğruladım; bu sonuçlar uygulamanın otomatik testinde (`cuzdan-araci/test/cuzdan.test.js`) her çalıştırmada yeniden kontrol ediliyor:
+Kâğıttaki kelimelerle kutu "Geçerli" dedi. Sonra bir kelimeyi listedeki başka kelimelerle değiştirerek birkaç deneme yaptım; denemelerimin hepsinde sonuç "Geçersiz" çıktı, tesadüfen geçen bir kelimeye denk gelmedim. Gerçek kelimelerim gizli olduğu için deneme ayrıntılarını (pozisyon ve kelime) kaydetmedim. Aynı davranış herkese açık resmî test kelimeleriyle (11 × `abandon` + `about`) de kontrol ediliyor. Aşağıdaki sonuçlar asistanın yazdığı otomatik testten (`cuzdan-araci/test/cuzdan.test.js`) geliyor ve her çalıştırmada yeniden kontrol ediliyor:
 
 | Deneme (resmî test kelimeleri) | Değişiklik | Sonuç |
 |---|---|---|

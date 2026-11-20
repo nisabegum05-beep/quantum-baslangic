@@ -4,7 +4,9 @@
 
 ## 1. Küçük bir web uygulaması ve güvenli 128 bit entropi
 
-`cuzdan-araci/` klasöründe Vite ve sade JavaScript ile çalışan bir web uygulaması geliştirdim. Kriptografik işlemler için ethers.js v6 kullandım. "Yeni eğitim cüzdanı oluştur" düğmesi `randomBytes(16)` ile 16 bayt, yani 128 bit entropi üretir. Bu fonksiyon tarayıcıda işletim sisteminin güvenli rastgelelik kaynağını (`crypto.getRandomValues`) kullanır.
+`cuzdan-araci/` klasöründe Vite ve sade JavaScript ile çalışan bir web uygulaması var. Kodu yapay zekâ asistanı Claude Code yazdı. Ben uygulamayı çalıştırıp denedim, tasarımını belirledim ve her aşamanın açıklamasını okudum. Kriptografik işlemler için ethers.js v6 kullandım. "Yeni eğitim cüzdanı oluştur" düğmesi `randomBytes(16)` ile 16 bayt, yani 128 bit entropi üretir. Bu fonksiyon tarayıcıda işletim sisteminin güvenli rastgelelik kaynağını (`crypto.getRandomValues`) kullanır.
+
+Uygulama Vercel'de de yayında: https://etkinlikcuzdani-araci.vercel.app/. Yayındaki sürümde de bütün hesaplar yalnızca açan kişinin tarayıcısında yapılır ve sunucuya hiçbir değer gitmez.
 
 Math.random kullanmadım çünkü genel amaçlı rastgelelik tahmin edilebilir. Sonraki bütün aşamalar aynı girdiden aynı sonucu verdiği için entropiyi tahmin eden biri kelimeleri, anahtarları ve adresi de bulabilir.
 
@@ -49,7 +51,7 @@ Yalnızca `Wallet.createRandom()` sonucunu göstermek yerine her aşamayı ayrı
 - **Aşama 5:** Kökten m/44'/60'/0'/0/0 yoluyla ilk Ethereum hesabına inilir. 60 Ethereum'u, son 0 ilk hesabı gösterir.
 - **Aşama 6:** Yolun sonundaki düğümün 32 baytlık private key'i alınır.
 - **Aşama 7:** Private key'den secp256k1 eğri çarpımıyla 65 baytlık sıkıştırılmamış public key hesaplanır. Ethereum adresi bu biçimden türediği için sıkıştırılmamış hâli seçtim.
-- **Aşama 8:** Adresi elle türettim: 0x04 önekini attım, Keccak-256 aldım, son 20 baytı kestim ve `getAddress` ile EIP-55 büyük/küçük harflerini uyguladım. Sonra ethers'ın hazır `computeAddress` fonksiyonuyla aynı sonucu verdiğini kontrol ettim; ekranda "Kontrol ✔" olarak görünüyor.
+- **Aşama 8:** Uygulama adresi elle türetiyor: 0x04 önekini atıyor, Keccak-256 alıyor, son 20 baytı kesiyor ve `getAddress` ile EIP-55 büyük/küçük harflerini uyguluyor. Sonra ethers'ın hazır `computeAddress` fonksiyonuyla aynı sonucu verdiğini kontrol ediyor; ekranda "Kontrol ✔" olarak görünüyor.
 
 ## İsteğe bağlı: Resmî BIP39 test vektörü
 
