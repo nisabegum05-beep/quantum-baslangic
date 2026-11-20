@@ -8,7 +8,6 @@
 
 Math.random kullanmadım çünkü genel amaçlı rastgelelik tahmin edilebilir. Sonraki bütün aşamalar aynı girdiden aynı sonucu verdiği için entropiyi tahmin eden biri kelimeleri, anahtarları ve adresi de bulabilir.
 
-![Uygulama ekranı, 8 aşama ve gizli alanlar kapalı](kanitlar/ip12-1-uygulama-ekrani.png)
 
 ## 2. Entropi → 12 kelime → seed → m/44'/60'/0'/0/0 → private key → public key → adres
 
@@ -56,8 +55,6 @@ Yalnızca `Wallet.createRandom()` sonucunu göstermek yerine her aşamayı ayrı
 
 Resmî BIP39 test vektörlerinin ilkini (trezor/python-mnemonic, english[0]) kullandım. Bu vektör "TREZOR" passphrase'iyle üretildiği için kendi deneyimdeki boş passphrase'ten ayrı bir dosyada (`test-vektoru.js`) tuttum. Aynı girdi ve ayarla mnemonic, seed ve xprv resmî değerlerle eşleşti. `npm test` ile 8 test çalıştırıyorum; hepsi geçiyor. Testlerde yalnızca resmî vektör ve sabit test değerleri kullanılıyor.
 
-![npm test çıktısı](kanitlar/ip12-2-npm-test.png)
-![Resmî vektör: Eşleşti](kanitlar/ip12-3-test-vektoru.png)
 
 ## Benim yorumum
 

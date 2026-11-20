@@ -5,7 +5,8 @@
 ## 1. Etherscan'deki kodu Remix'e kopyalayıp derlemek
 
 Takım sözleşmesinin (`0x81Dd700C459BF2806A1B5F2a349c89f0106A9036`) Etherscan'deki Contract → Code bölümünden `src/QuantumKayit.sol` dosyasını Remix'te yeni bir dosyaya kopyaladım; settings.json içeriğini kopyalamadım. Remix'te derleyince `artifacts/` altında sözleşmenin ABI'si ve bytecode'u oluştu. Bu derleme zincire hiçbir şey göndermedi; amacı Remix'in sözleşmenin fonksiyonlarını tanıması için ABI üretmekti. İsmim koda yazılmadı, daha sonra fonksiyona parametre olarak verildi.
-<!-- doldur: Etherscan'deki Compiler Version, Optimization ve EVM Version -->
+
+Etherscan'deki doğrulanmış ayarlar: **Compiler** v0.8.24+commit.e11b9ed9 · **Optimization** kapalı (200 runs) · **EVM** cancun. Remix'te 0.8.x bir derleyiciyle derlemek ABI üretmek için yeterli; bu ayarlar İP 18'deki verify için önemli.
 
 Kodda dikkat ettiğim satırlar:
 
@@ -25,7 +26,6 @@ Deploy & Run sekmesinde ortam olarak Browser Extension / MetaMask'i seçtim ve �
 
 İlk denemede `tumKayitlar` okuması "no code found at address" hatası verdi ve Remix'te bakiyem 0 görünüyordu. Sebebi, MetaMask'in remix.ethereum.org sitesini Sepolia'ya değil başka bir ağa bağlamış olmasıydı. O ağda bu adreste sözleşme yok. MetaMask'te site için ağı Sepolia yapıp bağlantıyı yenileyince bakiyem 0.05 ETH göründü ve `kayitSayisi` ile `tumKayitlar` takım listesini döndürdü. Aynı adresin farklı ağda farklı bir şey olabileceğini burada canlı gördüm.
 
-![Remix: Browser Extension, hesap ve At Address ile bağlı sözleşme](kanitlar/ip16-1-remix-at-address.png)
 
 ## 3. İsim kuralı
 
@@ -44,30 +44,37 @@ Göndermeden önce ağın Sepolia, hesabın `0x05d7…00Af6`, etkileşim adresin
 | Bilgi | Değer |
 |---|---|
 | Tx hash | `0x67587deae063fe93b5678de80f6c66ce83a965fb3149ab8e794011afdfb06222` |
-| Blok | 12141331 |
+| Blok / zaman (UTC) | 12141331 · 15.11.2026 16:12:36 |
+| Status | Success · gas used 583,639 · nonce 0 |
 | Sonuç (tumKayitlar) | uye `0x05d782…00Af6`, isim `nisabegumerkilic`, sıra 8, zaman 1794759156 (15 Kasım 2026, 16:12:36 UTC) |
 
 Bu işlemle yeni bir sözleşme oluşturmadım. Takımın mevcut sözleşmesinin state'ine kendi kaydımı ekledim: `kayitliMi` benim için `true` oldu ve `kayitlar` listesine 8. satır olarak girdim. Sözleşmenin kodu değişmedi, yalnızca tuttuğu veri değişti.
 
-![Register işlemi, Etherscan](kanitlar/ip16-2-register-tx.png)
 
 ## 5. Aynı cüzdanla ikinci register denemesi
 
-Etherscan'de hesabımın işlem listesinde, başarılı kaydımdan bir blok sonra (12141332) başarısız bir ikinci Register işlemi görünüyor: `0x9eb7161beb…`, Status Fail, nonce 1. Yani ikinci deneme zincire gönderilmiş, bloğa alınmış ve sözleşmedeki `require` satırında "Bu cuzdan zaten kayitli" ile revert olmuş. Gas ücreti ödendi, nonce harcandı ama state değişmedi; kaydım tek ve doğru kaldı.
-<!-- doldur: ikinci işlemin nasıl gönderildiği (iki kez onaylama mı, uyarıyı geçmek mi) ve tam tx hash -->
+Etherscan'de hesabımın işlem listesinde, başarılı kaydımdan bir blok sonra başarısız bir ikinci Register işlemi görünüyor:
+
+| Bilgi | Değer |
+|---|---|
+| Tx hash | `0x9eb7161beb8d120af9434856ecd46984001572b81a244e2ef25ca315503670e5` |
+| Blok / zaman (UTC) | 12141332 · 15.11.2026 16:12:48 (ilk kayıttan 12 saniye sonra) |
+| Status | Fail — "Bu cuzdan zaten kayitli" (execution reverted) |
+| Nonce | 1 |
+| Gas used / limit | 21,400 / 589,438 |
+| Ücret | 0.0000000000003638 ETH |
+
+İki işlem 12 saniye arayla, art arda iki blokta yer alıyor. Bu da ikinci işlemin aynı oturumda ikinci bir onayla gönderildiğini gösteriyor. İkinci işlem zincire gitti, bloğa alındı ve sözleşmedeki `require` satırında revert oldu. Gas ödendi, nonce harcandı, ama state değişmedi; kaydım tek ve doğru kaldı.
 
 Bu hatayı gönderilmeden önce oluşan hatadan ayırmak gerekiyor. Normalde cüzdan işlemi göndermeden önce `eth_estimateGas` ile simüle eder; `require` simülasyonda da revert vereceği için cüzdan uyarı gösterir. Uyarı zorla geçilmezse tx hash hiç oluşmaz ve zincirde iz kalmaz. Benim durumumda ise işlem bloğa girdiği için hata zincirde oluştu ve bir tx hash'i var.
 
-![İkinci register: zincirde başarısız işlem](kanitlar/ip16-3-ikinci-kayit-zincirde-revert.png)
 
 ## 6. Kontrol sitesi
 
 Kontrol sitesinde (haloclineblockchain.vercel.app) ismimi aradım ve kaydım göründü.
 
-![Kontrol sitesinde ismim](kanitlar/ip16-4-kontrol-sitesi.png)
 
 ## Benim yorumum
-<!-- Taslak: bu oturumdaki deneyimime göre yazıldı, teslimden önce kendi cümlelerimle gözden geçir -->
 
 İsmimin sitede görünmesi ile zincirde kaydedilmiş olması aynı kontrol değil. Zincir kaydı sözleşmenin state'inde duruyor: `tumKayitlar` beni 8. sırada gösteriyor ve bu, siteden bağımsız olarak herkesin doğrulayabileceği bir gerçek. Site ise zinciri okuyan bir pencere; yalnızca kendi listesindeki isimlerle eşleşen kayıtları gösteriyor. Mesela ismimi "ı" harfiyle gönderseydim zincire yine yazılırdı ama sitede görünmezdi. Site kapansa ya da yanlış sözleşmeyi izlese de kaydım zincirde kalırdı. Bu yüzden asıl kanıt Etherscan'deki Status ve sözleşmenin state'i; site ise bunun kullanıcı dostu bir özeti.
 

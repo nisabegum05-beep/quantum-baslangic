@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 -70 140 140">
+  <!-- Kadınzincir · naif masal kitabı üslubu · özgün çizim · palet: kullanıcının Vintage Storybook paleti -->
+  <defs>
+    <!-- Pastel/kömür kalem konturu: kenarları titretir ve yer yer ufalar -->
+    <filter id="pastel" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" result="titreme"/>
+      <feDisplacementMap in="SourceGraphic" in2="titreme" scale="3.5" xChannelSelector="R" yChannelSelector="G" result="kayik"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="1" seed="9" result="gren"/>
+      <feColorMatrix in="gren" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 5 -3.4" result="delikler"/>
+      <feComposite in="kayik" in2="delikler" operator="out" result="ufali"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="2" result="leke"/>
+      <feColorMatrix in="leke" type="matrix" values="0 0 0 0 0.22  0 0 0 0 0.15  0 0 0 0 0.12  0 0 0 0.9 -0.35" result="golge"/>
+      <feComposite in="golge" in2="ufali" operator="in" result="golgeIc"/>
+      <feMerge><feMergeNode in="ufali"/><feMergeNode in="golgeIc"/></feMerge>
+    </filter>
+    <!-- Göz bebeği göz akının dışına taşmasın -->
+    <clipPath id="goz-sol-kirp"><ellipse cx="-40" cy="16" rx="30" ry="24"/></clipPath>
+    <clipPath id="goz-sag-kirp"><ellipse cx="40" cy="16" rx="30" ry="24"/></clipPath>
+    <radialGradient id="yanak"><stop offset="0" stop-color="#C98D83" stop-opacity="0.85"/><stop offset="1" stop-color="#C98D83" stop-opacity="0"/></radialGradient>
+    <pattern id="puantiye" width="22" height="22" patternUnits="userSpaceOnUse">
+      <rect width="22" height="22" fill="#A94F35"/><circle cx="6" cy="6" r="3.2" fill="#E9D4AD"/><circle cx="17" cy="17" r="3.2" fill="#E9D4AD"/>
+    </pattern>
+  </defs>
+  <polygon points="-22.0,-40.0 -15.1,-23.5 2.7,-22.0 -10.9,-10.4 -6.7,7.0 -22.0,-2.3 -37.3,7.0 -33.1,-10.4 -46.7,-22.0 -28.9,-23.5" fill="none" stroke="#38251F" stroke-width="2" opacity="0.9" stroke-linejoin="round"/><path transform="translate(26 20) scale(2.4)" d="M 0 8 C -14 -4 -12 -16 -4 -16 C 0 -16 0 -12 0 -10 C 0 -12 0 -16 4 -16 C 12 -16 14 -4 0 8 Z" fill="#A94F35" opacity="0.95"/><polygon points="30.0,-48.0 33.2,-40.4 41.4,-39.7 35.1,-34.3 37.1,-26.3 30.0,-30.6 22.9,-26.3 24.9,-34.3 18.6,-39.7 26.8,-40.4" fill="none" stroke="#38251F" stroke-width="2" opacity="0.7" stroke-linejoin="round"/>
+</svg>

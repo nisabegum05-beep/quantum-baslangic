@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    CSP: Sayfa yalnızca kendi dosyalarını yükler ('self'): betik, stil, çizimler (cizimler/*.svg)
+    ve yazı tipleri (yazitipleri/*.woff2, OFL). Hiçbir sunucuya veri isteği atmaz (connect-src 'none');
+    zincirle MetaMask uzantısı üzerinden konuşur (window.ethereum). Etherscan bağlantıları yalnızca
+    tıklanınca açılan linklerdir.
+  -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>Geliştirici Kadınlar Etkinliği — Kayıt</title>
+  <link rel="stylesheet" href="./stil.css" />
+</head>
+<body>
+
+  <!-- ============ GİRİŞ (masal kitabının kapağı) ============ -->
+  <section id="giris-sayfasi" class="giris-sayfasi" aria-label="Giriş">
+    <picture class="giris-sahnesi">
+      <source media="(prefers-reduced-motion: reduce)" srcset="/cizimler/giris-sahnesi-statik.svg" />
+      <img src="/cizimler/giris-sahnesi.svg"
+           alt="Yuvarlak bir masada dizüstü bilgisayarlarıyla kod yazan üç kadın. Ekranlardan çıkan Solidity satırları arka planda dalgalanıyor; masanın yanında kırmızı papyonlu kara bir kedi oturuyor." />
+    </picture>
+    <div class="giris-icerik">
+      <h1 class="giris-basligi">Geliştirici Kadınlar Etkinliği</h1>
+      <p class="giris-alt-baslik">kadın geliştiriciler · aynı masada · aynı zincirde</p>
+      <p class="giris-notu">eğitim projesi · Ethereum Sepolia test ağı</p>
+      <button type="button" id="giris-dugmesi" class="giris-dugmesi">Giriş</button>
+    </div>
+
+    <!-- Konuşan karakterler: dokununca sırayla 10 blokzincir bilgisi (src/bilgiler.js) -->
+    <div class="sahne-karakteri cilek-karakteri">
+      <div id="cilek-balonu" class="konusma-balonu" role="status" aria-live="polite" hidden>
+        <button type="button" class="balon-kapat" data-balon="cilek-balonu" aria-label="Balonu kapat">×</button>
+        <p class="balon-metni"></p>
+        <p class="balon-sayaci"></p>
+      </div>
+      <button type="button" id="cilek-dugmesi" class="karakter-dugmesi" aria-label="Çilek: bir blokzincir bilgisi söylesin">
+        <img src="/cizimler/cilek.svg" alt="" />
+      </button>
+      <span class="dokun-notu" aria-hidden="true">dokun ♡</span>
+    </div>
+
+    <div class="sahne-karakteri kedi-karakteri">
+      <div id="kedi-balonu" class="konusma-balonu" role="status" aria-live="polite" hidden>
+        <button type="button" class="balon-kapat" data-balon="kedi-balonu" aria-label="Balonu kapat">×</button>
+        <p class="balon-metni"></p>
+        <p class="balon-sayaci"></p>
+      </div>
+      <button type="button" id="kedi-dugmesi" class="karakter-dugmesi" aria-label="Kara kedi: bir blokzincir bilgisi söylesin">
+        <img src="/cizimler/kedi.svg" alt="" />
+      </button>
+      <span class="dokun-notu" aria-hidden="true">dokun ♡</span>
+    </div>
+  </section>
+
+  <!-- ============ UYGULAMA (masal kitabının sayfaları) ============ -->
+  <img class="kenar-kodlari" src="/cizimler/kenar-kodlari.svg" alt="" />
+
+  <main id="uygulama" class="uygulama" hidden>
+    <header class="sayfa-basligi">
+      <button type="button" id="girise-don-dugmesi" class="ikincil-dugme girise-don">← Giriş</button>
+      <div class="portre-sirasi" aria-hidden="true">
+        <img class="portre" src="/cizimler/kiz-sol-portre.svg" alt="" />
+        <img class="portre portre-orta" src="/cizimler/kiz-orta-portre.svg" alt="" />
+        <img class="portre" src="/cizimler/kiz-sag-portre.svg" alt="" />
+      </div>
+      <h1 id="etkinlik-adi">Geliştirici Kadınlar Etkinliği</h1>
+      <p class="alt-baslik">kadın geliştiriciler · aynı masada · aynı zincirde</p>
+    </header>
+
+    <p class="egitim-uyarisi">Eğitim projesidir; yalnızca Sepolia test ağı. Bu site private key veya kurtarma kelimesi istemez — işlemleri MetaMask imzalar.</p>
+
+    <!-- I. Cüzdan bağlantısı [İP24-3] -->
+    <section class="kart cuzdan-bolumu" aria-labelledby="baslik-cuzdan">
+      <div class="bolum-basi">
+        <span class="bolum-no" aria-hidden="true">I</span>
+        <h2 id="baslik-cuzdan">Cüzdanını bağla</h2>
+        <img class="bolum-susu" src="/cizimler/kurdele.svg" alt="" />
+      </div>
+      <button type="button" id="cuzdan-bagla-dugmesi" class="ana-dugme">Cüzdan bağla</button>
+      <dl class="bilgi-listesi">
+        <dt>Bağlı adres</dt><dd><code id="bagli-adres">—</code></dd>
+        <dt>Ağ</dt><dd id="ag-durumu">—</dd>
+      </dl>
+      <div id="yanlis-ag-uyarisi" class="uyari-kutusu" hidden>
+        Cüzdanın Sepolia'da değil. Bu ağda kayıt ve giriş işlemi gönderilmez.
+        <button type="button" id="sepoliaya-gec-dugmesi" class="ikincil-dugme">Sepolia'ya geç</button>
+      </div>
+      <p id="metamask-yok-uyarisi" class="uyari-kutusu" hidden>MetaMask bulunamadı. MetaMask uzantısının kurulu olduğu tarayıcı profilini kullan.</p>
+    </section>
+
+    <!-- II. Etkinlik bilgisi [İP24-2] -->
+    <section class="kart etkinlik-bolumu" aria-labelledby="baslik-etkinlik">
+      <div class="bolum-basi">
+        <span class="bolum-no" aria-hidden="true">II</span>
+        <h2 id="baslik-etkinlik">Etkinlik</h2>
+        <img class="bolum-susu" src="/cizimler/ev-agac.svg" alt="" />
+      </div>
+      <dl class="bilgi-listesi">
+        <dt>Etkinlik adı</dt><dd id="bilgi-etkinlik-adi">—</dd>
+        <dt>Kapasite</dt><dd id="bilgi-kapasite">—</dd>
+        <dt>Toplam kayıt</dt><dd id="bilgi-toplam-kayit">—</dd>
+        <dt>Görevli</dt><dd><code id="bilgi-gorevli">—</code></dd>
+        <dt>Sözleşme</dt><dd><a id="sozlesme-baglantisi" class="dis-baglanti" target="_blank" rel="noopener noreferrer">—</a></dd>
+      </dl>
+      <button type="button" id="bilgileri-yenile-dugmesi" class="ikincil-dugme">Bilgileri yenile</button>
+    </section>
+
+    <!-- III. Benim durumum [İP24-4] -->
+    <section class="kart durum-bolumu" aria-labelledby="baslik-durum">
+      <div class="bolum-basi">
+        <span class="bolum-no" aria-hidden="true">III</span>
+        <h2 id="baslik-durum">Benim durumum</h2>
+        <img class="bolum-susu bolum-portre" src="/cizimler/kiz-sag-portre.svg" alt="" />
+      </div>
+      <dl class="bilgi-listesi">
+        <dt>Kayıtlı mıyım?</dt><dd id="durum-kayitli">—</dd>
+        <dt>Takma adım</dt><dd id="durum-takma-ad">—</dd>
+        <dt>Giriş yaptım mı?</dt><dd id="durum-giris">—</dd>
+      </dl>
+    </section>
+
+    <!-- IV. Kayıt ol [İP24-4] -->
+    <section class="kart kayit-bolumu" aria-labelledby="baslik-kayit">
+      <div class="bolum-basi">
+        <span class="bolum-no" aria-hidden="true">IV</span>
+        <h2 id="baslik-kayit">Kayıt ol</h2>
+        <img class="bolum-susu" src="/cizimler/cilek.svg" alt="" />
+        <img class="bolum-susu bolum-portre" src="/cizimler/kiz-orta-portre.svg" alt="" />
+      </div>
+      <label class="alan-etiketi" for="takma-ad-girdisi">Takma ad <span class="el-notu">(gerçek isim değil)</span></label>
+      <input id="takma-ad-girdisi" class="metin-girdisi" type="text" autocomplete="off" maxlength="40" />
+      <label class="onay-satiri"><input id="kadin-beyani" type="checkbox" /> Kendimi kadın olarak tanımlıyorum</label>
+      <label class="onay-satiri"><input id="gelistirici-beyani" type="checkbox" /> Geliştiriciyim</label>
+      <p class="el-notu">Beyanlar zincirde doğrulanamaz; kapıda görevli kontrol eder.</p>
+      <button type="button" id="kayit-ol-dugmesi" class="ana-dugme">Kayıt ol</button>
+    </section>
+
+    <!-- V. Görevli kapısı [İP24-5] -->
+    <section class="kart gorevli-bolumu" aria-labelledby="baslik-gorevli">
+      <div class="bolum-basi">
+        <span class="bolum-no" aria-hidden="true">V</span>
+        <h2 id="baslik-gorevli">Görevli kapısı</h2>
+        <img class="bolum-susu bolum-portre" src="/cizimler/kiz-sol-portre.svg" alt="" />
+        <img class="bolum-susu bolum-susu-kedi" src="/cizimler/kedi.svg" alt="" />
+      </div>
+      <p class="bolum-aciklama">Girişi yalnızca görevli onaylayabilir. Bu kural sözleşmede denetlenir: düğme herkese görünse de görevli olmayanın işlemi zincirde reddedilir.</p>
+      <p class="bilgi-satiri el-notu" id="gorevli-mi-notu">—</p>
+      <label class="alan-etiketi" for="katilimci-adresi-girdisi">Katılımcı adresi</label>
+      <input id="katilimci-adresi-girdisi" class="metin-girdisi" type="text" autocomplete="off" spellcheck="false" placeholder="0x…" />
+      <button type="button" id="giris-onayla-dugmesi" class="ana-dugme">Girişi onayla</button>
+    </section>
+
+    <!-- VI. Defter: işlem durumu [İP24-6, İP25 hazırlık] -->
+    <section class="kart islem-bolumu" aria-labelledby="baslik-islem">
+      <div class="bolum-basi">
+        <span class="bolum-no" aria-hidden="true">VI</span>
+        <h2 id="baslik-islem">Defter</h2>
+        <img class="bolum-susu" src="/cizimler/yildiz-kalp.svg" alt="" />
+      </div>
+      <p id="islem-durumu" class="islem-durumu" aria-live="polite">Henüz işlem yok.</p>
+      <p class="bilgi-satiri"><a id="islem-baglantisi" class="dis-baglanti" target="_blank" rel="noopener noreferrer" hidden>İşlemi Etherscan'de aç</a></p>
+    </section>
+
+    <footer class="sayfa-sonu el-notu">aynı masada, aynı zincirde ♡</footer>
+  </main>
+
+  <script type="module" src="./src/arayuz.js"></script>
+</body>
+</html>

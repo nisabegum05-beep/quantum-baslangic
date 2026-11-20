@@ -39,7 +39,6 @@ Diğer dosyalar:
 - `stil.css` — kullanıcının tarifine göre tasarım: mint arka plan, blob kartlar, pembe oklar, çiçek balonu, yıldız düğmeler.
 - `src/aciklamalar.js` — çiçeğe basınca sırayla gösterilen 10 "ne / neden" açıklaması.
 - `test/cuzdan.test.js` — Node yerleşik test aracı.
-- `OGRENDIKLERIM.md` — öğrenme defteri. `KAYIT.md` — yalnızca olgular.
 
 ## Güvenlik kararları
 

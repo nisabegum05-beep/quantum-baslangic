@@ -20,7 +20,9 @@ MetaMask'te "Hesap ekle" ile ikinci hesabı açtım: `0x72d419faA7B4bbc4Bfa1956C
 
 | Alan | ETH işlemi | USDC işlemi |
 |---|---|---|
-| Tx hash | `0x69960fc772a…` <!-- doldur: tam hash --> | `0x28e9bebc0a…` <!-- doldur: tam hash --> |
+| Tx hash | `0x69960fc772a8a513dfc8c14efb6b08c244275db6c830de91c323ed3a61604da9` | `0x28e9bebc0a1ee6d2a121cc62cea2822e6f66ff30b4ada397354b1b14370a0520` |
+| Blok / zaman (UTC) | 12163205 · 18.11.2026 18:27:24 | 12163212 · 18.11.2026 18:28:48 |
+| Status | Success | Success |
 | To | `0x72d419fa…0F4B` (ikinci hesap) | `0x1c7D4B19…7238` (USDC sözleşmesi) |
 | Value | 0.005 ETH | 0 ETH |
 | Input Data | `0x` (boş) | `transfer(address to, uint256 value)`, MethodID `0xa9059cbb` |
@@ -41,11 +43,9 @@ Beklenmeyen bir gözlem: düz bir ETH transferi normalde 21.000 gas harcar, beni
 
 ![ETH transferi](kanitlar/ip15-1-eth-transfer-tx.png)
 ![USDC transferi](kanitlar/ip15-2-usdc-transfer-tx.png)
-![USDC işleminin Transfer event'i](kanitlar/ip15-3-usdc-transfer-log.png)
 ![Hesabımın işlem listesi](kanitlar/ip15-4-hesap-islem-listesi.png)
 
 ## Benim yorumum
-<!-- Taslak: bu oturumdaki deneyimime göre yazıldı, teslimden önce kendi cümlelerimle gözden geçir -->
 
 USDC gönderirken ücretin ETH bakiyemden çıktığını üç yerden gördüm. MetaMask'in onay penceresinde 10 USDC gönderirken "Ağ ücreti" USDC değil 0.0002 SepoliaETH olarak yazıyordu. Etherscan'de USDC işleminin Transaction Fee satırı ETH olarak görünüyordu. İşlemden sonra USDC bakiyem yalnızca gönderdiğim 10 kadar azaldı, ücret kadar azalan ise ETH bakiyemdi. Yani token ne olursa olsun gas her zaman native varlıkla ödeniyor. Bu da şu anlama geliyor: ETH'si olmayan bir hesap elinde USDC olsa bile onu gönderemez. İkinci hesaba yalnızca USDC değil biraz ETH de göndermemin sebebi buydu.
 

@@ -23,7 +23,7 @@ MetaMask'te bakiyem 0,05 SepoliaETH oldu ama İşlem Geçmişi'nde gelen işlem 
 | Transaction Hash | `0xb1d9ca4010e707066fd361dcb23ce79ce90ff6660cd70b07bc120e959b693e36` | İmzalı işlemin Keccak-256 hash'i; imza anında oluşur, tek başına başarı kanıtı değildir |
 | Status | Success | Makbuzdaki status 1; asıl başarı kanıtı |
 | Block | 12140988 | İşlemin girdiği blok |
-| Timestamp | 15 Kasım 2026, 15:02:48 UTC | |
+| Timestamp | 15 Kasım 2026, 15:02:48 UTC | İşlemin girdiği bloğun üretildiği zaman; imza anı değil |
 | From | `0xAfEDA61dB9e162293b2eF2C2bC5A800b37Bb5E4a` | Faucet'in cüzdanı |
 | To | `0x05d782Efca095aF3569D76Ef5542c352B3800Af6` | Benim adresim |
 | Value | 0.05 ETH | Native varlık transferi |
@@ -41,7 +41,6 @@ Faucet'in adres sayfasına bakınca 1 milyondan fazla işlem göndermiş ve daki
 PoW faucet kullanmadım. Kullansaydım tarayıcıda yapılan hesaplama, faucet'in botları caydırmak için koyduğu kendi dağıtım koşulu olurdu. Bu hesaplama zincire yazılmaz ve Sepolia'da blok üretmekle aynı şey değildir; Sepolia PoS ile çalışır, blokları validatörler üretir.
 
 ## Benim yorumum
-<!-- Taslak: bu oturumdaki deneyimime göre yazıldı, teslimden önce kendi cümlelerimle gözden geçir -->
 
 Bu görevde adresimi bir faucet sitesine, Etherscan'e ve bir yapay zekâ sohbetine verdim; hiçbiri hesabımdan tek bir wei gönderemedi. Faucet bana ETH gönderebildi çünkü kendi private key'iyle kendi hesabından imza attı. Adres, İP 12'de Aşama 8'de gördüğüm gibi public key'in hash'inin son 20 baytı; ondan geriye, yani private key'e gidilemiyor. Harcama yetkisi imzada, imza da private key'de. Adresi paylaşmak bir posta adresi vermek gibi: herkes kutuya bir şey bırakabilir ama kutuyu ancak anahtarı olan açabilir. Yine de adresin herkese açık olduğunu da gördüm: adresimi bilen herkes Etherscan'de bakiyemi ve bütün işlemlerimi görebiliyor.
 

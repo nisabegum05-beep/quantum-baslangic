@@ -1,0 +1,18 @@
+{
+  "name": "etkinlik-sitesi",
+  "version": "0.1.0",
+  "description": "Kadınzincir etkinlik sözleşmesi için MetaMask bağlantılı web arayüzü (İP 24)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174",
+    "build": "vite build",
+    "test": "node --test test/site.test.js"
+  },
+  "dependencies": {
+    "ethers": "^6.17.0"
+  },
+  "devDependencies": {
+    "vite": "^8.3.8"
+  }
+}

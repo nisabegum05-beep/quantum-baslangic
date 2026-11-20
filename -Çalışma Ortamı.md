@@ -4,12 +4,13 @@
 
 ## 1. GitHub hesabı, Visual Studio Code ve Git
 
-zaten vardı.
+GitHub hesabım, Visual Studio Code ve Git, HALOCLINE projesinden zaten kuruluydu. Bu iş paketi için yeniden kurmadım. Yalnızca Git kullanıcı adımın ve e-postamın tanımlı olduğunu kontrol ettim.
 
 ## 2. quantum-baslangic klasörü ve GitHub deposu
 
 Bilgisayarımda `quantum-baslangic` adlı bir klasör ve aynı adla bir GitHub deposu oluşturdum. İP 01–10 araştırma notlarımı depoya ekledim. İP 12'de yazdığım cüzdan aracı `cuzdan-araci/` klasöründe, ekran görüntüsü kanıtları `kanitlar/` klasöründe duruyor. Takımın iç belgesi olan iş paketi PDF'i `.gitignore` ile depodan dışarıda tutuluyor.
 
+Deponun kökündeki `README.md` çalışmanın amacını, öğrenmek istediğim konuları, klasörleri, kullandığım araçları ve iki uygulamanın nasıl çalıştırılacağını anlatıyor.
 
 ## 3. Git, GitHub, README, commit ve push
 
@@ -45,10 +46,11 @@ npm run dev     # uygulamayı http://localhost:5173 adresinde açar
 npm test        # resmî BIP39 test vektörü ve sabit değer testlerini çalıştırır
 ```
 
-Araçların ve çalıştırma adımlarının ayrıntısı `cuzdan-araci/README.md` dosyasında yazıyor.
+İP 24'teki etkinlik sitesi de aynı araçlarla `etkinlik-sitesi/` klasöründe çalışıyor. `npm run dev` onu http://localhost:5174 adresinde açıyor, `npm run build` ise yayın için `dist/` klasörünü üretiyor.
+
+Araçların ve çalıştırma adımlarının ayrıntısı kökteki `README.md` dosyasında ve her uygulamanın kendi README'sinde yazıyor.
 
 ## Benim yorumum
-
 
 Git, GitHub ve VS Code'u HALOCLINE'da mobil uygulama geliştirirken zaten kullanıyordum, o yüzden bunlar yeni değildi. Benim için yeni olan MetaMask'in çoklu cüzdan mantığı ve Remix'ti. MetaMask'te aynı kurulumun içine yeni kelimeler eklemeye çalışınca "zaten içe aktarıldı" hatasıyla uğraştım ve en sonunda temiz bir profilde baştan kurmak en sağlıklı yol oldu. Buradan şunu öğrendim: parola, hesap adı ve ağ listesi cihaza ait, hesabın kendisi ise kelimelere ait. Remix'te de en çok şaşırdığım şey sitenin MetaMask'te ayrı bir ağa bağlı kalabilmesiydi. Kurulumda takıldığım her yerde önce hata mesajını okuyup neyin nereye bağlı olduğunu anlamaya çalıştım.
 
