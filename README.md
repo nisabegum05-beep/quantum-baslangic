@@ -4,9 +4,9 @@ Quantum Blokzincir Takımı yeni üye iş paketi çalışmam.
 
 İş paketini İP 01'den İP 25'e kadar baştan sona çalıştım ve konuları anladım. Amacım unuttuğum yerleri hatırlamak ve başlıkları kendi cümlelerimle tekrar etmekti. Bu yüzden zaten bildiğim konuları da yeniden yazdım.
 
-**Teslim raporu:** [RAPOR.md](./RAPOR.md). Her İP'nin durumu, işlem hash'leri, kanıtları ve henüz yapmadığım adımlar orada.
+**Teslim raporu:** [RAPOR.md](./RAPOR.md). Her İP'nin durumu, işlem hash'leri ve kanıtları orada. (sonra test edilecek adımlar)
 
-**Kim ne yaptı?** İP 01–10 notlarını kendim yazdım. Cüzdan, transfer, Remix ve deploy işlemlerini kendim yaptım. Kodları ve İP 11–17 not taslaklarını yapay zekâ asistanı Claude Code ile yazdım. Kuralları, tasarımı ve akışı ben belirledim. Ayrıntısı raporun başında.
+**Kim ne yaptı?** İP 01–10 notlarını kendim yazdım. Cüzdan, transfer, Remix ve deploy işlemlerini kendim yaptım. Kodları ve İP 11–17 not taslaklarını yapay zekâ asistanı Claude ile yazdım. Kuralları, tasarımı ve akışı ben belirledim. Ayrıntısı raporun başında.
 
 ## Yaptığım siteler
 
@@ -16,8 +16,7 @@ Quantum Blokzincir Takımı yeni üye iş paketi çalışmam.
 | Geliştirici Kadınlar Etkinliği | https://etkinlik-sitesi-ivory.vercel.app/ | [`etkinlik-sitesi/`](./etkinlik-sitesi/) | 24–25 |
 
 - **Cüzdan oluşturucu** 128 bit entropiden Ethereum adresine giden 8 adımı tek tek gösterir. Yalnızca eğitim içindir, ürettiği hesaba gerçek varlık gönderilmemelidir.
-- **Etkinlik sitesi** MetaMask ile Sepolia'daki kendi sözleşmem Kadınzincir'e bağlanır. Kayıt ve görevli giriş onayı için tasarlandı. Canlı sitede henüz işlem gönderilmedi. Göndereceğim
-
+- **Etkinlik sitesi** MetaMask ile Sepolia'daki kendi sözleşmem Kadınzincir'e bağlanır. Kayıt ve görevli giriş onayı için tasarlandı. Canlı sitede henüz işlem gönderilmedi.
 - İki sitenin güvenlik politikası (CSP) hiçbir sunucuya veri gönderilmesine izin vermez.
 
 ## Başlıklarım ve kanıtlarım
@@ -41,7 +40,7 @@ Quantum Blokzincir Takımı yeni üye iş paketi çalışmam.
 | 15 | Test USDC edin ve iki transferi karşılaştır | [`-Test USDC ve İki Transfer.md`](<./-Test USDC ve İki Transfer.md>) | [ETH işlemi](./kanitlar/ip15-1-eth-transfer-tx.png), [USDC işlemi](./kanitlar/ip15-2-usdc-transfer-tx.png), [işlem listesi](./kanitlar/ip15-4-hesap-islem-listesi.png), [ETH onayı](./kanitlar/ip15-5-eth-onay-penceresi.png), [USDC onayı](./kanitlar/ip15-6-usdc-onay-penceresi.png) |
 | 16 | Remix ile gerçek ismini kaydet | [`-Remix ile İsim Kaydı.md`](<./-Remix ile İsim Kaydı.md>) | [kayıt işlemi](https://sepolia.etherscan.io/tx/0x67587deae063fe93b5678de80f6c66ce83a965fb3149ab8e794011afdfb06222) (Etherscan) |
 | 17 | Explorer ile kaydı doğrula | [`-Explorer ile Kayıt Doğrulama.md`](<./-Explorer ile Kayıt Doğrulama.md>) | [başarısız ikinci kayıt](https://sepolia.etherscan.io/tx/0x9eb7161beb8d120af9434856ecd46984001572b81a244e2ef25ca315503670e5) (Etherscan). Değerleri asistan okudu, ekran görüntüsü yok |
-| 18–19 | Takım sözleşmesinin kopyası | [`takim-sozlesmesi-kopyasi/`](./takim-sozlesmesi-kopyasi/) | **yapılmadı**: kaynak kod ve derleyici ayarları hazır, deploy yok |
+| 18–19 | Takım sözleşmesinin kopyası | [`takim-sozlesmesi-kopyasi/`](./takim-sozlesmesi-kopyasi/) | kısmen: kaynak kod ve derleyici ayarları hazır, deploy yapılmadı |
 | 20 | İlk etkinlik kaydı | [`etkinlik-sozlesmesi/`](./etkinlik-sozlesmesi/) | [okuma](./kanitlar/ip20-1a-okuma-account1.png) |
 | 21 | Kapasite ve kayıt kuralları | [`etkinlik-sozlesmesi/`](./etkinlik-sozlesmesi/) | [kapasite dolu](./kanitlar/ip21-1-kapasite-dolu.png), [toplam 3](./kanitlar/ip21-1b-toplam-kayit-3.png), [adres hatası](./kanitlar/ip21-4-okuma-ve-adres-hatasi.png) |
 | 22 | Görevli ve giriş kontrolü | [`etkinlik-sozlesmesi/`](./etkinlik-sozlesmesi/) | deneme tablosu sözleşme README'sinde |

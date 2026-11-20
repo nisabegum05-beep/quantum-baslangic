@@ -21,14 +21,13 @@
 | 15 | Test USDC ve iki transfer | Tamamlandı | [`-Test USDC ve İki Transfer.md`](<./-Test USDC ve İki Transfer.md>) |
 | 16 | Remix ile isim kaydı | Tamamlandı | [`-Remix ile İsim Kaydı.md`](<./-Remix ile İsim Kaydı.md>) |
 | 17 | Explorer ile doğrulama | Kısmen: `tumKayitlar` okumasını Remix'te kendim yaptım. Etherscan alanlarını, Input Data'yı ve event'i asistan okudu. Ekran görüntüsü yok, Etherscan bağlantıları var | [`-Explorer ile Kayıt Doğrulama.md`](<./-Explorer ile Kayıt Doğrulama.md>) |
-| 18 | Takım sözleşmesinin kopyası: deploy + verify | **Yapılmadı** · kaynak kod ve ayarlar hazır | [`takim-sozlesmesi-kopyasi/`](./takim-sozlesmesi-kopyasi/) |
-| 19 | Etherscan Write Contract ile kendi kopyama kayıt | **Yapılmadı** (İP 18'e bağlı) | — |
+| 18–19 | Takım sözleşmesinin kopyası: deploy, verify ve Write Contract ile kayıt | Kısmen: kaynak kod ve derleyici ayarları hazır (0.8.24, optimizer kapalı, EVM cancun). Deploy, verify ve kopyaya kayıt yapılmadı | [`takim-sozlesmesi-kopyasi/`](./takim-sozlesmesi-kopyasi/) |
 | 20 | İlk etkinlik kaydı | Tamamlandı: iki kayıt ve başka hesaptan okuma Remix VM'de, ekran görüntüsüyle. Ek üç okuma asistanın yerel EVM çalıştırmasından | [`etkinlik-sozlesmesi/EtkinlikKaydi_v1.sol`](./etkinlik-sozlesmesi/EtkinlikKaydi_v1.sol) |
 | 21 | Kapasite ve kayıt kuralları | Kısmen: üç kayıt ve kapasite reddini Remix VM'de kendim yaptım, ekran görüntüsü var. Tekrar kayıt, boş ad ve iki beyan denemelerini Remix'te yapmadım. Bunlar asistanın yerel EVM çalıştırmasından | [`etkinlik-sozlesmesi/Kadinzincir_v2.sol`](./etkinlik-sozlesmesi/Kadinzincir_v2.sol) |
 | 22 | Görevli ve giriş kontrolü | Kısmen: kod tamam. Giriş denemelerini Remix VM'de yapmadım. Gözlemlerin hepsi asistanın yerel EVM çalıştırmasından | [`etkinlik-sozlesmesi/Kadinzincir_v3.sol`](./etkinlik-sozlesmesi/Kadinzincir_v3.sol) |
 | 23 | Sepolia'ya taşıma | Kısmen: deploy'u kendim yaptım. `gorevli()` değerini ve bayt kodu eşleşmesini asistan zincirden doğruladı. İkinci hesapla kayıt ve görevli onayı bekliyor | [`etkinlik-sozlesmesi/README.md`](./etkinlik-sozlesmesi/README.md) |
-| 24 | Cüzdan bağlantılı web arayüzü | Kod tamam · yayında: https://etkinlik-sitesi-ivory.vercel.app/ · MetaMask ile canlı kayıt denemesi bekliyor | [`etkinlik-sitesi/`](./etkinlik-sitesi/) |
-| 25 | Bekleme ve hata durumları | Kodda var; senaryo denemeleri yapılmadı | [`etkinlik-sitesi/src/arayuz.js`](./etkinlik-sitesi/src/arayuz.js) |
+| 24 | Cüzdan bağlantılı web arayüzü | Kısmen: kod tamam ve yayında: https://etkinlik-sitesi-ivory.vercel.app/. Sitede henüz kayıt ve görevli onayı yapılmadı | [`etkinlik-sitesi/`](./etkinlik-sitesi/) |
+| 25 | Bekleme ve hata durumları | Kısmen: bekleme, ret ve hata mesajları kodda var. Sitede senaryo denemeleri yapılmadı | [`etkinlik-sitesi/src/arayuz.js`](./etkinlik-sitesi/src/arayuz.js) |
 
 ## 2. Adresler ve işlemler (hepsi Sepolia)
 
@@ -137,14 +136,4 @@ Etkinlik sözleşmesinin kurallarını ben belirledim, kodunu Claude Code sıfı
   - Veri okuma: `src/sozlesme.js` → `etkinlikBilgisiOku()`, `kullaniciDurumuOku()`
   - Sözleşme çağrıları: `kayitOl()`, `girisOnayla()`, ortak `islemGonder()`
   - Ekran: `src/arayuz.js`
-
-## 8. Kalan işler
-
-Bunları henüz kendim yapmadım:
-
-1. **İP 21–22:** Remix VM'de tekrar kayıt, boş ad, iki beyan ve görevli giriş denemelerini yapıp ekran görüntüsü almak. Şu an bu satırların gözlemleri asistanın yerel EVM çalıştırmasından.
-2. **İP 17:** Etherscan'de işlemin alanlarını, Input Data'yı ve Logs sekmesini kendim açıp ekran görüntüsü almak.
-3. **İP 23–24:** Yayındaki sitede ikinci hesapla (`0x72d4…0F4B`) kayıt olmak ve görevli hesabıyla girişi onaylamak.
-4. **İP 25:** İmza reddi, tekrar kayıt, görevli olmayan hesapla giriş ve hesap değişimi senaryolarını sitede denemek.
-5. **İP 18–19:** Takım sözleşmesinin kopyasını Sepolia'ya deploy etmek; verify için 0.8.24, optimizer kapalı, EVM cancun. Ardından kopyaya Etherscan Write Contract ile kayıt olmak.
 
