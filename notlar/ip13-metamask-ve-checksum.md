@@ -19,7 +19,7 @@ Burada şunu gördüm: hesap adı, parola ve ağ listesi her kurulumda ayrı tut
 
 İki adres aynı 20 baytı gösteriyor. EIP-55 büyük/küçük harf düzeni de birebir aynı çıktı. Eşleşmenin üç varsayımı tuttu: aynı yol (m/44'/60'/0'/0/0), aynı hesap indeksi (0) ve boş passphrase. Harfler farklı görünseydi bile 40 hex karakteri küçük harfe çevirip karşılaştırmak yeterli olurdu, çünkü EIP-55 adresi değiştirmez, yalnızca yazım hatalarını yakalar.
 
-![Uygulama adresi ile MetaMask adresi eşleşiyor, gizli alanlar kapalı](kanitlar/ip13-1-adres-eslesme.png)
+![Uygulama adresi ile MetaMask adresi eşleşiyor, gizli alanlar kapalı](../kanitlar/ip13-1-adres-eslesme.png)
 
 ## 3. Checksum deneyi
 
@@ -37,7 +37,7 @@ Kâğıttaki kelimelerle kutu "Geçerli" dedi. Sonra bir kelimeyi listedeki baş
 
 Kendi kelimelerimle yaptığım bir denemenin, kelimeleri kapatılmış ekran görüntüsü aşağıda; o denemede kutu kelime sayısında takıldı ("12 kelime bekleniyor").
 
-![Doğrulama kutusu, kelimeler kapatılmış: "Geçersiz — 12 kelime bekleniyor"](kanitlar/ip13-2a-dogrulama-kutusu-kapatilmis.png)
+![Doğrulama kutusu, kelimeler kapatılmış: "Geçersiz — 12 kelime bekleniyor"](../kanitlar/ip13-2a-dogrulama-kutusu-kapatilmis.png)
 
 Checksum yalnızca 4 bit olduğu için sınırlı hata yakalar. Bir kelimeyi değiştirince yeni entropinin checksum'ı 16 olası değerden birine düşer ve 12. kelimedeki eski checksum'la yaklaşık 1/16 ihtimalle tesadüfen tutar. O zaman kutu "Geçerli" der, ama bu kelimeler artık başka bir entropiye, başka bir seed'e ve başka bir hesaba aittir.
 

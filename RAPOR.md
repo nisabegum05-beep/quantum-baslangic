@@ -14,13 +14,13 @@
 | İP | Konu | Durum | Nerede |
 |---|---|---|---|
 | 01–10 | Araştırma notları | Tamamlandı | Depo kökündeki not dosyaları (aşağıda 6. bölüm) |
-| 11 | Çalışma ortamı | Tamamlandı | [`-Çalışma Ortamı.md`](<./-Çalışma Ortamı.md>), [`README.md`](./README.md) |
-| 12 | Kendi cüzdan oluşturucum | Tamamlandı · yayında: https://etkinlikcuzdani-araci.vercel.app/ | [`cuzdan-araci/`](./cuzdan-araci/), [`-Cüzdan Oluşturucu.md`](<./-Cüzdan Oluşturucu.md>) |
-| 13 | MetaMask karşılaştırması ve checksum | Tamamlandı | [`-MetaMask ve Checksum.md`](<./-MetaMask ve Checksum.md>) |
-| 14 | Test ETH | Tamamlandı | [`-Test ETH.md`](<./-Test ETH.md>) |
-| 15 | Test USDC ve iki transfer | Tamamlandı | [`-Test USDC ve İki Transfer.md`](<./-Test USDC ve İki Transfer.md>) |
-| 16 | Remix ile isim kaydı | Tamamlandı | [`-Remix ile İsim Kaydı.md`](<./-Remix ile İsim Kaydı.md>) |
-| 17 | Explorer ile doğrulama | Kısmen: `tumKayitlar` okumasını Remix'te kendim yaptım. Etherscan alanlarını, Input Data'yı ve event'i asistan okudu. Ekran görüntüsü yok, Etherscan bağlantıları var | [`-Explorer ile Kayıt Doğrulama.md`](<./-Explorer ile Kayıt Doğrulama.md>) |
+| 11 | Çalışma ortamı | Tamamlandı | [`notlar/ip11-calisma-ortami.md`](./notlar/ip11-calisma-ortami.md), [`README.md`](./README.md) |
+| 12 | Kendi cüzdan oluşturucum | Tamamlandı · yayında: https://etkinlikcuzdani-araci.vercel.app/ | [`cuzdan-araci/`](./cuzdan-araci/), [`notlar/ip12-cuzdan-olusturucu.md`](./notlar/ip12-cuzdan-olusturucu.md) |
+| 13 | MetaMask karşılaştırması ve checksum | Tamamlandı | [`notlar/ip13-metamask-ve-checksum.md`](./notlar/ip13-metamask-ve-checksum.md) |
+| 14 | Test ETH | Tamamlandı | [`notlar/ip14-test-eth.md`](./notlar/ip14-test-eth.md) |
+| 15 | Test USDC ve iki transfer | Tamamlandı | [`notlar/ip15-test-usdc-ve-iki-transfer.md`](./notlar/ip15-test-usdc-ve-iki-transfer.md) |
+| 16 | Remix ile isim kaydı | Tamamlandı | [`notlar/ip16-remix-ile-isim-kaydi.md`](./notlar/ip16-remix-ile-isim-kaydi.md) |
+| 17 | Explorer ile doğrulama | Kısmen: `tumKayitlar` okumasını Remix'te kendim yaptım. Etherscan alanlarını, Input Data'yı ve event'i asistan okudu. Ekran görüntüsü yok, Etherscan bağlantıları var | [`notlar/ip17-explorer-ile-kayit-dogrulama.md`](./notlar/ip17-explorer-ile-kayit-dogrulama.md) |
 | 18–19 | Takım sözleşmesinin kopyası: deploy, verify ve Write Contract ile kayıt | Kısmen: kaynak kod ve derleyici ayarları hazır (0.8.24, optimizer kapalı, EVM cancun). Deploy, verify ve kopyaya kayıt yapılmadı | [`takim-sozlesmesi-kopyasi/`](./takim-sozlesmesi-kopyasi/) |
 | 20 | İlk etkinlik kaydı | Tamamlandı: iki kayıt ve başka hesaptan okuma Remix VM'de, ekran görüntüsüyle. Ek üç okuma asistanın yerel EVM çalıştırmasından | [`etkinlik-sozlesmesi/EtkinlikKaydi_v1.sol`](./etkinlik-sozlesmesi/EtkinlikKaydi_v1.sol) |
 | 21 | Kapasite ve kayıt kuralları | Kısmen: üç kayıt ve kapasite reddini Remix VM'de kendim yaptım, ekran görüntüsü var. Tekrar kayıt, boş ad ve iki beyan denemelerini Remix'te yapmadım. Bunlar asistanın yerel EVM çalıştırmasından | [`etkinlik-sozlesmesi/Kadinzincir_v2.sol`](./etkinlik-sozlesmesi/Kadinzincir_v2.sol) |

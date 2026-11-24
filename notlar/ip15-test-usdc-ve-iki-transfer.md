@@ -13,8 +13,8 @@ MetaMask'te Tokenlar → Token içe aktar → Özel token ile sözleşme adresin
 
 MetaMask'te "Hesap ekle" ile ikinci hesabı açtım: `0x72d419faA7B4bbc4Bfa1956C81597EDb750E0F4B`. Bu hesap aynı 12 kelimeden m/44'/60'/0'/0/1 yoluyla türüyor. İlk hesabımdan ona 0.005 ETH ve 10 USDC gönderdim; MetaMask'te bu hesabın adı "YEDEK2". İP 16 ve sonrası için ilk hesabımda ETH bıraktım.
 
-![ETH gönderimi onay penceresi: ağ ücreti 0.0003 SepoliaETH](kanitlar/ip15-5-eth-onay-penceresi.png)
-![USDC gönderimi onay penceresi: 10 USDC gönderilirken ağ ücreti 0.0002 SepoliaETH](kanitlar/ip15-6-usdc-onay-penceresi.png)
+![ETH gönderimi onay penceresi: ağ ücreti 0.0003 SepoliaETH](../kanitlar/ip15-5-eth-onay-penceresi.png)
+![USDC gönderimi onay penceresi: 10 USDC gönderilirken ağ ücreti 0.0002 SepoliaETH](../kanitlar/ip15-6-usdc-onay-penceresi.png)
 
 ## 3. İki işlemin karşılaştırması
 
@@ -41,9 +41,9 @@ Nonce'lar da hesabımın gönderdiği işlemleri sırayla gösteriyor: 0 başar�
 
 Beklenmeyen bir gözlem: düz bir ETH transferi normalde 21.000 gas harcar, benimki 204.600 harcadı ve bu yüzden ETH işleminin ücreti USDC'ninkinden yüksek çıktı. Sebebini doğrulayamadım. Olası açıklama, MetaMask'in "akıllı hesap" (EIP-7702) özelliğinin hesaplardan birinde açık olması; bu durumda hesaba bağlı kod çalıştığı için gas artar.
 
-![ETH transferi](kanitlar/ip15-1-eth-transfer-tx.png)
-![USDC transferi](kanitlar/ip15-2-usdc-transfer-tx.png)
-![Hesabımın işlem listesi](kanitlar/ip15-4-hesap-islem-listesi.png)
+![ETH transferi](../kanitlar/ip15-1-eth-transfer-tx.png)
+![USDC transferi](../kanitlar/ip15-2-usdc-transfer-tx.png)
+![Hesabımın işlem listesi](../kanitlar/ip15-4-hesap-islem-listesi.png)
 
 ## Benim yorumum
 

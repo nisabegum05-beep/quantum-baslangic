@@ -10,7 +10,7 @@
 
 Chainlink'in resmî faucet'ini (faucets.chain.link) kullandım. Alan adının Chainlink'e ait olduğunu adres çubuğundan kontrol ettim. Faucet yalnızca adresimi ve sahibi olduğumu kanıtlamam için bir mesaj imzası istedi. Mesaj düz metindi ("Welcome to Chainlink Faucets… Wallet address: 0x05d7…"), token harcama izni içermiyordu ve ağ Sepolia'ydı. Mesaj imzalamak işlem göndermek değildir: gas ödenmez, zincire yazılmaz. Hiçbir siteye kelime veya private key girmedim, test varlığı satın almadım.
 
-![Chainlink faucet: mesaj imzası talebi (işlem değil)](kanitlar/ip14-0-faucet-imza-talebi.png)
+![Chainlink faucet: mesaj imzası talebi (işlem değil)](../kanitlar/ip14-0-faucet-imza-talebi.png)
 
 Ekranda "Drips 0.5 ETH" yazmasına rağmen zincire 0.05 ETH geldi. Faucet ekranında ayrıca ana ağda LINK bulundurma şartından bahseden bir uyarı vardı, ama gönderim gerçekleşti.
 
@@ -31,10 +31,10 @@ MetaMask'te bakiyem 0,05 SepoliaETH oldu ama İşlem Geçmişi'nde gelen işlem 
 
 Faucet'in adres sayfasına bakınca 1 milyondan fazla işlem göndermiş ve dakikada bir 0,05 ETH dağıtan sıradan bir cüzdan olduğunu gördüm. Adres sayfasındaki bakiye güncel state'i, işlem listesi ise değişmeyen geçmişi gösteriyor.
 
-![Faucet'in adres sayfası: dördüncü satır benim işlemim](kanitlar/ip14-3-faucet-adres-sayfasi.png)
+![Faucet'in adres sayfası: dördüncü satır benim işlemim](../kanitlar/ip14-3-faucet-adres-sayfasi.png)
 
-![Faucet işlemi, Etherscan](kanitlar/ip14-1-faucet-tx-etherscan.png)
-![Adres sayfası ve MetaMask bakiyesi](kanitlar/ip14-2-adres-sayfasi-ve-metamask.png)
+![Faucet işlemi, Etherscan](../kanitlar/ip14-1-faucet-tx-etherscan.png)
+![Adres sayfası ve MetaMask bakiyesi](../kanitlar/ip14-2-adres-sayfasi-ve-metamask.png)
 
 ## 4. PoW faucet
 
